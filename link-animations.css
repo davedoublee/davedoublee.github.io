@@ -1,0 +1,55 @@
+.link {
+    background-image: linear-gradient(
+        to right,
+        var(--teal-color),
+        var(--teal-color) 50%,
+        #000 50%
+    );
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+.link:before{
+    content: '';
+    background: var(--teal-color);
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: all 0.3s ease-in-out;
+}
+.link:hover {
+    background-position: 0;
+}
+.link:hover::before{
+    width: 100%;
+}
+
+
+
+.button-link {
+    background-image: linear-gradient(
+        to right,
+        var(--teal-color),
+        var(--teal-color) 50%,
+        white 50%
+    );
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+.button-link:hover {
+    background-position: 0;
+    border: solid var(--teal-color) 2px !important;
+}

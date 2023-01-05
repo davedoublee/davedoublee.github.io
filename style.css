@@ -1,0 +1,188 @@
+:root {
+    --dark-color: rgb(37, 41, 52);
+    --dark-font: rgb(65, 70, 70);
+    --teal-color: rgb(61, 209, 235);
+
+    --h1-font-size: 40px;
+    --h2-font-size: calc(var(--h1-font-size) * 0.75);
+
+    -z-canvas: 1;
+    -z-hero: 2;
+}
+
+@font-face {
+    font-family: TitleFont;
+    src: url(Rubik-Regular.ttf);
+}
+@font-face {
+    font-family: TitleFontBold;
+    src: url(Rubik-Medium.ttf);
+}
+
+* {
+    vertical-align: top;
+    box-sizing: border-box;
+}
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+/* ------------- Hero ------------ */
+:root {
+    --diagonal-cut-height: 35px;
+}
+.hero {
+    width: 100%;
+    height: calc(100vh + var(--diagonal-cut-height));
+    overflow: hidden;
+    position: relative;
+    background-color: var(--dark-color);
+}
+.hero canvas {
+    position: absolute;
+    z-index: var(--z-canvas);
+}
+.hero .content {
+    height: 100%;
+    width: 100%;
+    z-index: var(--z-hero);
+    position: relative;
+}
+.hero .content h1 {
+    font-family: TitleFont;
+    text-align: center;
+
+    color: white;
+
+    font-size: var(--h1-font-size);
+    line-height: calc(var(--h1-font-size) * 1.5);
+    letter-spacing: 1px;    
+}
+.hero .buttons {
+    margin-top: 20px;
+
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+    gap: 30px;
+}
+.hero .buttons button {
+    background-color: rgba(0, 0, 0, 0);
+    border: solid white 2px;
+    
+    font-family: TitleFont;
+    font-size: 1.35em;
+    padding: 15px;
+    color: white;
+
+    cursor: pointer;
+}
+.diagonal-cut {
+    width: 100vw;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+
+
+
+/* ------------- Projects ------------ */
+:root {
+    --screens-container-width: 1000px;
+    --screens-container-height: 650px;
+    --monitor-width: 900px;
+    --phone-width: 300px;
+    --project-monitor-width: 850px;
+    --project-monitor-height: 515px;
+    --project-phone-width: 285px;
+    --project-phone-height: 425px;
+}
+.projects {
+    width: 100%;
+}
+.middled-100px {
+    width: 100%;
+    padding-top: 75px;
+    padding-bottom: 50px;
+}
+.projects h2 {
+    font-family: TitleFontBold;
+    text-align: center;
+    margin: auto;
+
+    color: var(--dark-font);
+    font-size: var(--h1-font-size);
+    letter-spacing: 0.015;
+}
+.h2-underscore {
+    margin: auto;
+    margin-top: 20px;
+
+    height: 4px;
+    width: 140px;
+    background-color: var(--dark-font);
+}
+.projects .screens {
+    position: relative;
+    margin: auto;
+
+    width: var(--screens-container-width);
+    height: var(--screens-container-height);
+}
+.project-monitor-img {
+    position: absolute;
+    
+    width: var(--project-monitor-width);
+    left: calc((var(--screens-container-width) - var(--project-monitor-width)) / 2);
+    top: 30px;
+}
+.monitor-img {
+    position: absolute;
+    
+    width: var(--monitor-width);
+    left: calc((var(--screens-container-width) - var(--monitor-width)) / 2);
+}
+.project-phone-img {
+    position: absolute;
+    
+    width: var(--project-phone-width);
+    bottom: 63px;
+    right: 5px;
+}
+.phone-img {
+    width: var(--phone-width);
+
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.project-names {
+    display: flex;
+    justify-content: space-between;
+    
+    margin: auto;
+
+    cursor: pointer;
+
+    margin-top: 75px;
+    margin-bottom: 75px;
+    width: var(--monitor-width);
+}
+.project-name {
+    font-family: TitleFontBold;
+    font-size: 1.5em;
+    color: var(--dark-font);
+}
