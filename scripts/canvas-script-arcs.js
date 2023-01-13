@@ -8,20 +8,19 @@
   setupCanvasSize(canvas, minimumCanvasHeight)
   
 
-
   const nCircles = 8
   let centerX = CANVAS_WIDTH - (CANVAS_WIDTH - 900) / 2 - 100
   let centerY = 350
 
   let mouseX = 500
   let mouseY = 500
-  let currentXPercentFromCenter = 0.5
-  let currentYPercentFromCenter = 0.5
   let mouseXPercentFromCenterTarget = 0.5
   let mouseYPercentFromCenterTarget = 0.5
 
+  const MINIMUM_ARCS_CANVAS_HEIGHT = 1050
+
   window.addEventListener( 'resize', () => {
-    setupCanvasSize(canvas, minimumCanvasHeight)
+    setupCanvasSize(canvas, MINIMUM_ARCS_CANVAS_HEIGHT)
     centerX = CANVAS_WIDTH - (CANVAS_WIDTH - 900) / 2 - 100
   })
   document.addEventListener('mousemove', function(evt) {

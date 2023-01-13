@@ -80,6 +80,12 @@ h2 {
     padding-top: 105px;
     padding-bottom: 75px;
 }
+@media (max-height: 700px) {
+    .h2-container {
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+}
 
 
 /* ------------- Hero ------------ */
@@ -193,6 +199,11 @@ h2 {
         width: 100%;
     }
 }
+@media (max-height: 700px) {
+    .projects {
+        margin-bottom: 40px;
+    }
+}
 .projects .screens img {
     will-change: transform; /* Optimizes animations; does nothing else */
 }
@@ -228,21 +239,6 @@ h2 {
         left: calc((100vw - var(--project-monitor-width)) / 2);
     }
 }
-@media (max-width: 900px) {
-    .monitor-img {
-        display: none;
-    }
-    .project-monitor-img {
-        width: 100vw;
-        top: 0px;
-        left: 0px;
-    }
-    .projects .screens {
-        height: calc(
-            var(--project-monitor-height-percent-width) * 100vw + 50px
-        );
-    }
-}
 .project-phone-img {
     position: absolute;
     
@@ -258,6 +254,19 @@ h2 {
     right: 0px;
 }
 @media (max-width: 900px) {
+    .monitor-img {
+        display: none;
+    }
+    .project-monitor-img {
+        width: 100vw;
+        top: 0px;
+        left: 0px;
+    }
+    .projects .screens {
+        height: calc(
+            var(--project-monitor-height-percent-width) * 100vw + 50px
+        );
+    }
     .phone-img {
         width: calc(0.8 * var(--phone-width));
     }
@@ -265,6 +274,35 @@ h2 {
         width: calc(0.8 * var(--project-phone-width));
         bottom: 52px;
         right: 9px;
+    }
+}
+@media (max-height: 700px) and (min-width: 900px) {
+    .projects .screens {
+        height: 480px;
+    }
+    .phone-img {
+        width: calc(0.8 * var(--phone-width));
+        right: 75px;
+    }
+    .project-phone-img {
+        width: calc(0.8 * var(--project-phone-width));
+        bottom: 52px;
+        right: calc(75px + 9px);
+    }
+    .monitor-shadow {
+        display: none;
+    }
+    .project-monitor-img {
+        position: absolute;
+        width: calc(0.7 * var(--project-monitor-width));
+        left: calc((var(--middle-width) - 0.7 * var(--project-monitor-width)) / 2);
+        top: 20px;
+    }
+    .monitor-img {
+        position: absolute;
+        
+        width: calc(0.7 * var(--monitor-width));
+        left: calc((var(--middle-width) - 0.7 * var(--monitor-width)) / 2);
     }
 }
 @media (max-width: 710px) {
@@ -330,13 +368,16 @@ h2 {
 :root {
     --about-right-percent: 32%;
     --about-right-width: calc(var(--middle-width) * 0.32);
-    --about-minimum-height: 900px;
+    --about-minimum-height: 1050px;
 
     --me-border-offset: 18px;
 }
 .about {
     width: 100%;
-    min-height: max(calc(100vh + 70px), var(--about-minimum-height));
+    min-height: max(
+        calc(100vh + 70px),
+        var(--about-minimum-height)
+    );
 
     position: relative;
 
@@ -565,6 +606,16 @@ h2 {
 @media (max-width: 710px) {
     .contact .form {
         width: 450px;
+    }
+}
+@media (max-height: 700px) {
+    .form-element {
+        height: 45px;
+        padding: 11px;
+        font-size: 18px;
+    }
+    .contact .form textarea {
+        height: 175px;
     }
 }
 
