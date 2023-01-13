@@ -58,7 +58,6 @@
 
 
 
-
 .other-projects h4 {
     margin-top: 75px;
 }
@@ -131,6 +130,24 @@
         width: 97%; /* For more pixel-perfect alignment with the right side of text, which might not always fill */
     }
 }
+@media (max-width: 710px) {
+    :root {
+        --space-between-projects: 75px;
+    }
+    .two-projects {
+        width: 83%;
+    }
+    .project {
+        width: 83%;
+    }
+    #Projects-Page h4 {
+        font-size: 26px;
+    }
+    .project-description-text {
+        font-size: 18px;
+    }
+}
+
 .tags {
     width: 100%;
     display: flex;

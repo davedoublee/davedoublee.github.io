@@ -82,18 +82,6 @@ h2 {
 }
 
 
-/* ------------- Index Page-------- */
-/* #Index-Page {
-    -webkit-transition: transform 0.3s ease-in-out;
-    -moz-transition: transform 0.3s ease-in-out;
-    -o-transition: transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out;
-}
-.index-shrunk {
-    transform-origin: top left;
-    transform: scale(0, 1);
-} */
-
 /* ------------- Hero ------------ */
 :root {
     --diagonal-cut-height: 35px;
@@ -150,7 +138,21 @@ h2 {
     left: 0px;
     z-index: var(--z-diagonal);
 }
-
+@media (max-width: 1085px) {
+    .hero .content h1 {
+        font-size: calc(0.6 * var(--h1-font-size));
+        line-height: calc(var(--h1-font-size) * 1.5 * 0.6);
+        letter-spacing: 0.6px;    
+    }
+}
+@media (max-width: 725px) {
+    .generic-button {
+        font-size: 18px;
+    }
+    .error-message {
+        font-size: 18px;
+    }
+}
 
 
 
@@ -257,10 +259,23 @@ h2 {
 }
 @media (max-width: 900px) {
     .phone-img {
-        top: 15px;
+        width: calc(0.8 * var(--phone-width));
     }
     .project-phone-img {
-        top: 77px;
+        width: calc(0.8 * var(--project-phone-width));
+        bottom: 52px;
+        right: 9px;
+    }
+}
+@media (max-width: 710px) {
+    .phone-img {
+        width: calc(0.6 * var(--phone-width));
+        right: 10px;
+    }
+    .project-phone-img {
+        width: calc(0.6 * var(--project-phone-width));
+        bottom: 38px;
+        right: 15px;
     }
 }
 .hidden {
@@ -376,6 +391,7 @@ h2 {
     .about .content {
         width: 82%;
         margin: auto;
+
         flex-direction: column;
         justify-content: center;
         gap: 50px;
@@ -393,6 +409,11 @@ h2 {
     .about .me-border {
         width: var(--media-me-width) !important;
         left: calc((100% - var(--media-me-width)) / 2 + var(--me-border-offset)) !important;
+    }
+}
+@media (max-width: 810px) {
+    .about .content .left {
+        font-size: 18px;
     }
 }
 .about .me-border {
@@ -540,6 +561,11 @@ h2 {
 
     font-size: 20px;
     line-height: 20px;
+}
+@media (max-width: 710px) {
+    .contact .form {
+        width: 450px;
+    }
 }
 
 
