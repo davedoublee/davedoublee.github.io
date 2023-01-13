@@ -6,52 +6,650 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dave Doublee - Freelance Developer</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="projects-page.css">
     <link rel="stylesheet" href="link-animations.css">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("Un1EzPszGizyvYd3y");
+        })();
+    </script>
   </head>
   <body>
 
+    <script>
+        document.body.onload = function() {
+            // document.querySelector('#Index-Page').style.display = 'none'
+            document.querySelector('#Projects-Page').style.display = 'none'
+        }
+    </script>
+
+    <div id="Index-Page" class="page">
+        <div class="hero">
+            <canvas id="Hero-Canvas" height="1050" width="1920"></canvas>
+            <div class="content centered-content" >
+                <h1>
+                    I make full-stack applications and much more.<br>
+                    Hire a one-man army, <span style="color: var(--teal-color)">Dave Doublee</span>.<br/>
+                </h1>
+                <div class="buttons">
+                    <a class="button-link--white generic-button" href="#Projects-Section">View my work</a>
+                    <a class="button-link--white generic-button" href="#Contact">Hire me!</a>
+                </div>
+            </div>
+            <img class="diagonal-cut" src="images/DiagonalCut.png">
+        </div>
 
 
-    <div class="hero">
-        <canvas height="1050" width="1920"></canvas>
-        <div class="content centered-content">
-            <h1>
-                Hello, I'm <span style="color: var(--teal-color)">Dave Doublee</span>.<br/>
-                I am a full-stack web developer.
-            </h1>
-            <div class="buttons">
-                <button class="button-link">View my work</button>
-                <button class="button-link">Hire me!</button>
+
+        <div id="Projects-Section" class="projects">
+            <div class="h2-container">
+                <h2>Projects</h2>
+                <div class="h2-underscore" style="width:140px; background-color: var(--dark-font);"></div>
+            </div>
+            <div class="project-names">
+                <div onclick="onClickOnProjectNameDiv(this)" class="project-name link link-active" data-png-name="CallofHeroes">Call of Heroes</div>
+                <div onclick="onClickOnProjectNameDiv(this)" class="project-name link" data-png-name="Tilefinder" data-is-monitor-gif="yes">Tilefinder</div>
+                <div onclick="onClickOnProjectNameDiv(this)" class="project-name link" data-png-name="Waxx" data-has-phone="no">Waxx Programming Language</div>
+                <div onclick="onClickOnOtherProjects()" class="project-name link" data-png-name="" data-is-other="yes">Other Projects <span style="line-height: 31px">➔</span></div>
+            </div>
+            <div class="screens">
+                <div class="monitor-shadow"></div>
+                <img loading="eager" class="project-monitor-img bottom" src="images/projects/Waxx-Monitor.png">
+                <img loading="eager" class="project-monitor-img top" src="images/projects/CallofHeroes-Monitor.png">
+                <img loading="eager" class="monitor-img" src="images/Monitor.png">
+
+                <img loading="eager" class="project-phone-img bottom" src="images/projects/CallofHeroes-Phone.png">
+                <img loading="eager" class="project-phone-img top" src="images/projects/CallofHeroes-Phone.png">
+                <img loading="eager" class="phone-img" src="images/Phone.png">
             </div>
         </div>
-        <img class="diagonal-cut" src="images/DiagonalCut.png">
+
+        <script>
+            let isClickable = true
+            let didClickOnAnyProject = false    // Used to toggle auto-carousel swapping
+            const projectNameDivs = [...document.querySelectorAll('.project-name')]
+                .filter(div => div.getAttribute('data-is-other') != 'yes')
+            
+            function onClickOnProjectNameDiv(projectNameDiv) {
+                if (isClickable == false) {
+                    return
+                }
+                didClickOnAnyProject = true
+                toggleProject(projectNameDiv)
+            }
+
+            function makeProjectNameDivSelected(projectNameDiv) {
+                for (const div of projectNameDivs) {
+                    if (div.classList.contains('link-active'))
+                        div.classList.remove('link-active')
+                }
+                projectNameDiv.classList.add('link-active')
+            }
+            function swapPhoneImage(newSrc) {
+                const phoneImg           = document.querySelector('.phone-img')
+                const imageBottomPhone   = document.querySelector('.project-phone-img.bottom')
+                const imageTopPhone      = document.querySelector('.project-phone-img.top')
+                
+                const isHidden = phoneImg.classList.contains('hidden')
+
+                if (isHidden && newSrc == null)
+                    return
+                if (isHidden == false && newSrc != null) {
+                    imageBottomPhone.setAttribute('src', newSrc)
+                    
+                    imageTopPhone.classList.add('monitor-img--transitioning')
+                    imageTopPhone.classList.add('monitor-img--invisibling')
+
+                    setTimeout(() => {
+                        imageTopPhone.classList.remove('monitor-img--transitioning')
+                        imageTopPhone.classList.remove('monitor-img--invisibling')
+                        imageTopPhone.setAttribute('src', newSrc)
+                    }, 300)
+                    return
+                }
+                if (isHidden == false && newSrc == null) {
+                    imageTopPhone.classList.add('monitor-img--transitioning')
+                    imageTopPhone.classList.add('monitor-img--invisibling')
+                    imageBottomPhone.classList.add('monitor-img--transitioning')
+                    imageBottomPhone.classList.add('monitor-img--invisibling')
+                    phoneImg.classList.add('monitor-img--transitioning')
+                    phoneImg.classList.add('monitor-img--invisibling')
+                    setTimeout(() => {
+                        imageTopPhone.classList.remove('monitor-img--transitioning')
+                        imageTopPhone.classList.remove('monitor-img--invisibling')
+                        imageBottomPhone.classList.remove('monitor-img--transitioning')
+                        imageBottomPhone.classList.remove('monitor-img--invisibling')
+                        phoneImg.classList.remove('monitor-img--transitioning')
+                        phoneImg.classList.remove('monitor-img--invisibling')
+                        phoneImg.classList.add('hidden')
+                        imageTopPhone.classList.add('hidden')
+                        imageBottomPhone.classList.add('hidden')
+                    }, 300)
+                    return
+                }
+                if (isHidden && newSrc != null) {
+                    // Show all except bottom (will show later)
+                    phoneImg.classList.remove('hidden')
+                    imageTopPhone.classList.remove('hidden')
+                    // Set src
+                    imageTopPhone.setAttribute('src', newSrc)
+                    // Make them invisible
+                    imageTopPhone.classList.add('monitor-img--invisibling')
+                    phoneImg.classList.add('monitor-img--invisibling')
+                    // Transition to visible
+                    setTimeout(() => {
+                        imageTopPhone.classList.add('monitor-img--transitioning')
+                        imageTopPhone.classList.remove('monitor-img--invisibling')
+                        phoneImg.classList.add('monitor-img--transitioning')
+                        phoneImg.classList.remove('monitor-img--invisibling')
+                    }, 50)
+                    // Normalize
+                    setTimeout(() => {
+                        imageTopPhone.classList.remove('monitor-img--transitioning')
+                        imageTopPhone.classList.remove('monitor-img--invisibling')
+                        imageBottomPhone.classList.remove('monitor-img--transitioning')
+                        imageBottomPhone.classList.remove('monitor-img--invisibling')
+                        imageBottomPhone.classList.remove('hidden')
+                    }, 350)
+
+                }
+            }
+            function toggleProject(projectNameDiv) {
+                const hasMobile = projectNameDiv.getAttribute('data-has-phone') != 'no'
+
+                const imageBottomMonitor = document.querySelector('.project-monitor-img.bottom')
+                const imageTopMonitor    = document.querySelector('.project-monitor-img.top')
+                const imageBottomPhone   = document.querySelector('.project-phone-img.bottom')
+                const imageTopPhone      = document.querySelector('.project-phone-img.top')
+
+                const extension = projectNameDiv.getAttribute('data-is-monitor-gif') == 'yes' ? 'gif' : 'png'
+                const newSrcMonitor = `images/projects/${projectNameDiv.getAttribute('data-png-name')}-Monitor.${extension}`
+                const newSrcPhone   = `images/projects/${projectNameDiv.getAttribute('data-png-name')}-Phone.png`
+
+                makeProjectNameDivSelected(projectNameDiv)
+
+                if (hasMobile) {
+                    swapPhoneImage(newSrcPhone)
+                } else {
+                    swapPhoneImage(null)
+                }
+
+                imageBottomMonitor.setAttribute('src', newSrcMonitor)
+                imageTopMonitor.classList.add('monitor-img--transitioning')
+                imageTopMonitor.classList.add('monitor-img--invisibling')
+
+                setTimeout(() => {
+                    imageTopMonitor.classList.remove('monitor-img--transitioning')
+                    imageTopMonitor.classList.remove('monitor-img--invisibling')
+                    imageTopMonitor.setAttribute('src', newSrcMonitor)
+                }, 300)
+
+            }
+        
+            function toggleNextProject() {
+                const currentlyActiveProjectNameDivIndex = projectNameDivs.findIndex(div => div.classList.contains('link-active'))
+                const nextProjectNameDivIndex = currentlyActiveProjectNameDivIndex == projectNameDivs.length - 1 ?
+                    0 : currentlyActiveProjectNameDivIndex + 1
+                const nextProjectNameDiv = projectNameDivs[nextProjectNameDivIndex]
+                toggleProject(nextProjectNameDiv)
+            }
+
+            setInterval(() => {
+                if (didClickOnAnyProject) return    // Turn off if user ever manually clicked on a project name div
+                toggleNextProject()
+            }, 3000)
+
+
+        </script>
+
+
+        <div class="about">
+            <img class="diagonal-cut-reverse" src="images/DiagonalCutReverse.png">
+            <canvas id="About-Canvas" height="1050" width="1920"></canvas>
+            <div class="h2-container">
+                <h2>
+                    <span class="switchy" data-replace="Dave!">
+                        <span>It's Me</span>
+                    </span>
+                </h2>
+                <div class="h2-underscore" style="width:120px; background-color: white"></div>
+            </div>
+            <div class="content">
+                <div class="left">
+                    The rumors about <span style="color: var(--teal-color)">10x developers</span> are true.
+                    Let me tell you the truth: today's programming is bloated with complicated infrastructures, overly large teams and development is <i>slow</i>. I will dismantle the system for you - fast, clean and with good communication.
+                    <br><br>
+                    I can deliver a full package: a <span style="color: var(--teal-color)">cross-platform</span> app that runs on <span style="color: var(--teal-color)">Desktop</span>, <span style="color: var(--teal-color)">Android</span> and in the <span style="color: var(--teal-color)">browser</span>, with <span style="color: var(--teal-color)">back-end server</span>, <span style="color: var(--teal-color)">hosting</span> and <span style="color: var(--teal-color)">design</span> included.
+                    I graduated computer science in 2020 and my license project was a full-fledged programming language, with an online compiler and scientific paper.
+                    I am also proficient in game development with <span style="color: var(--teal-color)">Unity</span>, <span style="color: var(--teal-color)">Godot</span> and <span style="color: var(--teal-color)">C#</span>.
+                    <br><br>
+                    I am a <span style="color: var(--teal-color)">JavaScript</span> enthusiast. What I am as well is <i>flexible</i> - I can work with any technology.
+                    For my front-end projects, I use <span style="color: var(--teal-color)">React</span> or plain <span style="color: var(--teal-color)">HTML</span>, depending on your needs. No worries, I will help you decide 😉.
+                </div>
+                <div class="right">
+                    <div class="me-border"></div>
+                    <img class="me" src="images/Me.jpg">
+                    <div class="languages">
+                        <img src="images/icons/Romania.png">
+                        <img src="images/icons/UK.png">
+                        <img src="images/icons/Esperanto.png">
+                    </div>
+                </div>
+            </div>
+            <div class="technologies">
+                <div class="technology">
+                    <h3>HTML5</h3>
+                    <img class="technology-icon" src="images/icons/html.png">
+                </div>
+                <div class="technology">
+                    <h3>CSS</h3>
+                    <img class="technology-icon" src="images/icons/css.png">
+                </div>
+                <div class="technology">
+                    <h3>JavaScript</h3>
+                    <img class="technology-icon" src="images/icons/js.png">
+                </div>
+                <div class="technology">
+                    <h3>Haxe</h3>
+                    <img class="technology-icon" src="images/icons/haxe.png">
+                </div>
+                <div class="technology">
+                    <h3>React</h3>
+                    <img class="technology-icon" src="images/icons/react.png">
+                </div>
+                <div class="technology">
+                    <h3>node.js</h3>
+                    <img class="technology-icon" src="images/icons/node.png">
+                </div>
+                <div class="technology">
+                    <h3>SQL</h3>
+                    <img class="technology-icon" src="images/icons/sql.png">
+                </div>
+                <div class="technology">
+                    <h3>Unity</h3>
+                    <img class="technology-icon" src="images/icons/unity.png">
+                </div>
+            </div>
+
+            <img class="diagonal-cut" src="images/DiagonalCut.png" style="bottom: -1px">
+        </div>
+    </div>
+
+    <div id="Projects-Page"> 
+        <div class="back-arrow" onclick="backToIndexPage()">
+            ➔
+        </div>
+        <div class="other-projects"
+            style="display: '';"
+        >
+            <div class="h2-container" style="padding-bottom: 105px;">
+                <h2>
+                    <span class="switchy" data-replace="More Below">
+                        <span style="color: var(--dark-font)">Main Projects<span>
+                    </span>
+                </h2>
+                <div class="h2-underscore" style="width:120px; background-color: var(--dark-font);"></div>
+            </div>
+
+
+            <div class="project">
+                <div class="right">
+                    <h4 style="margin-top: 15px;">Tilefinder, Roguelike Turn-Based RPG on Steam - Haxe, Stencyl</h4>
+                    <div class="tags">
+                        <span>Haxe</span>
+                        <span>C++</span>
+                        <span>Steam</span>
+                        <span>Cross-Platform</span>
+                        <span>100.000+ Lines of Code</span>
+                    </div>
+                    <div class="project-description-text">
+                        As a part-time professional game designer, Tilefinder had been my dream game for a long time. I developed <span style="color: var(--teal-color)">my own Game Engine</span> over the Stencyl Engine using the <span style="color: var(--teal-color)">Haxe</span> programming language. A testament of my perseverance.
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/TilefinderSteam.png"></div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="right">
+                    <h4>This Portofolio - Online Website Hosting</h4>
+                    <div class="tags">
+                        <span>HTML5</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>GitHub Pages</span>
+                    </div>
+                    <div class="project-description-text">
+                        I have been riguriously studying <span style="color: var(--teal-color)">web design</span> lately, and have been focusing on making beautiful layouts for my full-stack application. My portofolio is my proof of work and competence regarding design.
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/Portofolio.png"></div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="right">
+                    <h4>Who Am I Game - Online Server + Client HTTP Party Game</h4>
+                    <div class="tags">
+                        <span>Heroku</span>
+                        <span>HTTP</span>
+                        <span>JavaScript</span>
+                        <span>Rest-ful API</span>
+                    </div>
+                    <div class="project-description-text">
+                        A <span style="color: var(--teal-color)">full-stack application</span>, with an online page client and HTTP server hosted for free on Heroku.
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/WhoAmIGame.png"></div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="right">
+                    <h4 style="margin-top: 55px;">HR Management Desktop App - Syncing on LAN</h4>
+                    <div class="tags">
+                        <span>HTML5 + JavaScript</span>
+                        <span>NW.js and Node.js</span>
+                        <span>Windows</span>
+                        <span>Cross-Platform</span>
+                        <span>Cross-Device</span>
+                    </div>
+                    <div class="project-description-text">
+                        Cross-platform, cross-device application for human resource management that I made for a company; the app syncs between devices over a Local Area Network, no servers required.
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/HRManagementApp.png"></div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="right">
+                    <h4 style="margin-top: 50px;">Graveyard Man - Unity 3D Game, Technology Exploration</h4>
+                    <div class="tags">
+                        <span>Unity 3D</span>
+                        <span>C#</span>
+                        <span>Level Design</span>
+                    </div>
+                    <div class="project-description-text">
+                        I am proficient in the Unity game engine and C#; Graveyard Man is one of my dozens of Unity projects in which I explored beautiful level design and terraining.
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/GraveyardMan.png"></div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="qualifications-section">
+            <img class="diagonal-cut-reverse" src="images/DiagonalCutReverse.png">
+            <div class="h2-container" style="padding-bottom: 105px;">
+                <h2>
+                    <span class="switchy" data-replace="Yes, I'm Qualified!">
+                        <span style="color: white">Employment History</span>
+                    </span>
+                </h2>
+                <div class="h2-underscore" style="width:320px; background-color: white;"></div>
+            </div>
+    
+            <div class="two-projects">
+                <div class="qualification">
+                    <h4>AMIQ</h4>
+                    <div class="project-description-text qualification-text">
+                        I have real-life experience as a full-stack developer for AMIQ Consulting, where I designed, developer and maintained a statistics viewer application from the ground up. I am used to working with multiple technologies and learning them <span style="color: var(--teal-color)">fast</span>.
+                    </div>
+                    <div class="tags">
+                        <span>HTML5</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>Node.js</span>
+                        <span>ElasticSearch</span>
+                        <span>C++</span>
+                        <span>HTTP</span>
+                        <span>System Verilog</span>
+                        <span>Bash</span>
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>Graph.js</span>
+                    </div>
+                    <img src="images/projects/AMIQ.png">
+                </div>
+                <div class="qualification">
+                    <h4>BearingPoint</h4>
+                    <div class="project-description-text qualification-text">
+                        I worked as a <span style="color: var(--teal-color)">Senior Full-Stack Developer</span> for the large corporation BearingPoint. I have extensive knowledge and experience working with database management systems, Angular and working with multi-million dollar client companies.
+                    </div>
+                    <div class="tags">
+                        <span>Typescript</span>
+                        <span>Angular</span>
+                        <span>Nest.js</span>
+                        <span>HTML5</span>
+                        <span>SQL and PL-SQL</span>
+                        <span>Power BI</span>
+                        <span>Automation</span>
+                    </div>
+                    <img src="images/projects/BearingPoint.png">
+                </div>
+            </div>
+
+            <img class="diagonal-cut" src="images/DiagonalCut.png">
+        </div>
+
+        <div class="other-projects"
+            style="display: '';"
+        >
+            <div class="h2-container" style="padding-bottom: 105px;">
+                <h2>
+                    <span class="switchy" data-replace="And 104 More">
+                        <span style="color: var(--dark-font)">More Projects<span>
+                    </span>
+                </h2>
+                <div class="h2-underscore" style="width:220px; background-color: var(--dark-font);"></div>
+            </div>
+
+            <div class="project">
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/BeforeTheAfter.png"></div>
+                </div>
+                <div class="right">
+                    <h4 style="margin-top: 35px;">Before the After - Artistic Godot Game With AI-only Generated Assets</h4>
+                    <div class="tags">
+                        <span>Godot</span>
+                        <span>C#</span>
+                        <span>Midjourney AI</span>
+                    </div>
+                    <div class="project-description-text">
+                        An artistic, audio-visual experience game in which I explored Artificial Intelligence and used it for designing the assets for the game; even in the screenshot, all of those images are made with AI - background, cards, everything!
+                    </div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="right">
+                    <h4 style="margin-top: -10px;">Waxx Programming Language - Online Transpiler and Scientific Paper</h4>
+                    <div class="tags">
+                        <span>HTML5 + JavaScript</span>
+                        <span>Node.js</span>
+                        <span>Automata and Compiler Theory</span>
+                    </div>
+                    <div class="project-description-text">
+                        Waxx is a programming language I designed and developed that transpiles Waxx code to other programming languages, like JavaScript and Python. I have also written a full 70+ page scientific paper on Waxx, clean code and automata theory.
+                        If you need a programming language developed, I <i>am</i> your person.
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/Waxx.png"></div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="right">
+                    <h4 style="margin-top: 45px;">Ecosystem On Your Kitchen Table - Augmented Reality Darwinian Evolution Simulation</h4>
+                    <div class="tags">
+                        <span>Unity 3D</span>
+                        <span>C#</span>
+                        <span>Unity AR API</span>
+                    </div>
+                    <div class="project-description-text">
+                        This is my exploration of <span style="color: var(--teal-color)">Augmented Reality</span> - the app creates a voxel ecosystem on your, well, kitchen table, through the camera of your smart phone.
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/Ecosystem.png"></div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="right">
+                    <h4 style="margin-top: 135px;">Doge To The Moon - Such Doge, Much Wow!</h4>
+                    <div class="tags">
+                        <span>Lol</span>
+                    </div>
+                    <div class="project-description-text">
+                        Wow!
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="image-container"><img src="images/projects/DogeToTheMoon.png"></div>
+                </div>
+            </div>
+
+            
+            
+
+
+
+
+        </div>
+
+    </div>
+    
+    <script>
+        function onClickOnOtherProjects() {
+            document.querySelector('#Index-Page').style.display = 'none'
+            document.querySelector('#Projects-Page').style.display = ''
+            window.scrollTo(0, 0)
+        }
+        function backToIndexPage() {
+            document.querySelector('#Index-Page').style.display = ''
+            document.querySelector('#Projects-Page').style.display = 'none'
+            setTimeout(() => { window.scrollTo(0, 0) }, 100)
+        }
+    </script>
+
+    <!--
+
+    Strong Points:
+        - One-Man Army
+        - 10x developer
+        - Cross Platform
+        - #OneManArmy
+    -->
+
+    <div class="contact" id="Contact">
+        <div class="h2-container">
+            <h2>
+                <span class="switchy" data-replace="What are you waiting for?">
+                    <span>Let's Get In Touch</span>
+                </span>
+            </h2>
+            <div class="h2-underscore" style="width:280px; background-color: var(--dark-color)"></div>
+        </div>
+
+        <div class="form">
+            <label>Name</label>
+            <input class="form-element" id="name" placeholder="John Doe">
+
+            <label>Email</label>
+            <input class="form-element" id="email" placeholder="awesome.person@gmail.com">
+
+            <label>Message</label>
+            <textarea id="text" class="form-element" placeholder="Hi, Dave! I need a project done quickly and efficiently! Can you help?"></textarea>
+
+            <div class="button-and-error-message">
+                <button id="send-button" class="button-link--dark generic-button" onclick="sendMail()">Send</button>
+                <div class="error-message" style="display: none;">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            function showError(msg) {
+                const errorDiv = document.querySelector('.error-message')
+                errorDiv.innerHTML = msg
+                errorDiv.style.display = ''
+            }
+            function hideError() {
+                const errorDiv = document.querySelector('.error-message')
+                errorDiv.style.display = 'none'
+            }
+            const name = document.querySelector('#name').value.trim()
+            const mail = document.querySelector('#email').value.trim()
+            const message = document.querySelector('#text').value.trim()
+            if (name.length == 0) {
+                showError('Please input your name.')
+                return false
+            } else if (mail.length == 0) {
+                showError('Please input your email.')
+                return false
+            } else if (message.length == 0) {
+                showError('Please write a message about what you need.')
+                return false
+            } else {
+                hideError()
+                return true
+            }
+        }
+        function sendMail() {
+            const params = {
+                from_name: document.querySelector('#name').value,
+                email_id: document.querySelector('#email').value,
+                reply_to: document.querySelector('#email').value,   // Just to be sure
+                message: document.querySelector('#text').value
+            }
+
+            const didWork = validateForm()
+            if (didWork == false)
+                return
+            
+            const button = document.querySelector('#send-button')
+            button.disabled = true
+            button.innerHTML = 'Sent.'
+            button.style.color = 'var(--teal-color)'
+            button.classList.remove('button-link--dark')
+            emailjs.send('service_f88035i', 'template_6fcp8mv', params).then((res) => {
+                alert('Great! I will contact you as soon as possible!')
+            })
+        }
+    </script>
+
+
+    <div class="footer">
+        <img class="diagonal-cut-reverse" src="images/DiagonalCutReverse.png">
+        <div style="width: 100%; padding-top: var(--footer-padding-top)">
+            <div class="footer-icons">
+                <img class="footer-icon" src="images/icons/Facebook.png">
+                <img class="footer-icon" src="images/icons/Twitter.png">
+                <img class="footer-icon" src="images/icons/Linkedin.png">
+                <img class="footer-icon" src="images/icons/Fiverr.png">
+            </div>
+        </div>
+        <h4>Dave Doublee <span style="color: rgb(80, 129, 138)">@2023</span></h4>
     </div>
 
 
 
-    <div class="projects">
-        <div class="middled-100px">
-            <h2>Projects</h2>
-            <div class="h2-underscore"></div>
-        </div>
-        <div class="screens">
-            <img class="project-monitor-img" src="images/projects/CallofHeroes-Monitor.png">
-            <img class="monitor-img" src="images/Monitor.png">
-            <img class="project-phone-img" src="images/projects/CallofHeroes-Phone.png">
-            <img class="phone-img" src="images/Phone.png">
-        </div>
-        <div class="project-names">
-            <div class="project-name link">Call of Heroes</div>
-            <div class="project-name link">Tilefinder</div>
-            <div class="project-name link">HR App</div>
-            <div class="project-name link">Other Projects</div>
-        </div>
-    </div>
 
-
-
-
-    <script src="canvas-script.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/canvas-script-stars.js"></script>
+    <script src="scripts/canvas-script-arcs.js"></script>
 
   </body>
 </html>
+
+<!--
+    Arrow Icon by flaticon.com, Stockio
+-->

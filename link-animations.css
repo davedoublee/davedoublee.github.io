@@ -7,6 +7,7 @@
     );
     background-size: 200% 100%;
     background-position: -100%;
+
     display: inline-block;
     padding: 5px 0;
     position: relative;
@@ -14,7 +15,7 @@
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease-in-out;
 }
-.link:before{
+.link:before {
     content: '';
     background: var(--teal-color);
     display: block;
@@ -26,15 +27,22 @@
     transition: all 0.3s ease-in-out;
 }
 .link:hover {
-    background-position: 0;
+    background-position: 0%;    /* Goes from -100% to 0% */
 }
 .link:hover::before{
     width: 100%;
 }
 
+.link-active::before {
+    width: 100%;
+}
+.link-active {
+    background-position: 0%;
+}
 
 
-.button-link {
+
+.button-link--white {
     background-image: linear-gradient(
         to right,
         var(--teal-color),
@@ -49,7 +57,75 @@
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease-in-out;
 }
-.button-link:hover {
+.button-link--white:hover,
+.button-link--dark:hover {
     background-position: 0;
     border: solid var(--teal-color) 2px !important;
+}
+.button-link--dark {
+    background-image: linear-gradient(
+        to right,
+        var(--teal-color),
+        var(--teal-color) 50%,
+        var(--dark-font) 50%
+    );
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/* --------- Switchy --------- */
+/* Use it as:
+    <span class="switchy" data-replace="this link"><span>click on</span></span>
+*/
+.switchy {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+.switchy::before,
+.switchy::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+.switchy--underlined::before {
+    background-color: var(--teal-color-brighter);
+}
+.switchy::before {
+    height: 2px;
+    bottom: 0;
+    transform-origin: 100% 50%;
+    transform: scaleX(0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.switchy::after {
+    content: attr(data-replace);
+    height: 100%;
+    top: 0;
+    transform-origin: 100% 50%;
+    transform: translate3d(200%, 0, 0);
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+    color: var(--teal-color-brighter);
+}
+.switchy:hover::before {
+    transform-origin: 0% 50%;
+    transform: scaleX(1);
+}
+.switchy:hover::after {
+    transform: translate3d(0, 0, 0);
+}
+.switchy span {
+    display: inline-block;
+    transition: transform .3s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.switchy:hover span {
+    transform: translate3d(-200%, 0, 0);
 }
