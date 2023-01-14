@@ -25,12 +25,14 @@
 }
 
 @font-face {
-    font-family: TitleFont;
-    src: url(Rubik-Regular.ttf);
+    font-family: TextFont;
+    /* src: url(Rubik-Regular.ttf); */
+    src: url(OpenSans-Regular.ttf);
 }
 @font-face {
-    font-family: TitleFontBold;
+    font-family: HFont;
     src: url(Rubik-Medium.ttf);
+    /* src: url(OpenSans-SemiBold.ttf); */
 }
 
 * {
@@ -58,14 +60,14 @@ body {
     border: solid var(--dark-font) 2px;
     color: var(--dark-font);
 
-    font-family: TitleFont;
+    font-family: TextFont;
     font-size: 21.6px;
     padding: 15px;
 
     cursor: pointer;
 }
 h2 {
-    font-family: TitleFontBold;
+    font-family: HFont;
     text-align: center;
     margin: auto;
 
@@ -80,7 +82,7 @@ h2 {
     padding-top: 105px;
     padding-bottom: 75px;
 }
-@media (max-height: 700px) {
+@media (max-height: 700px) or (max-width: 700px) {  /* Also if screen too small */
     .h2-container {
         padding-top: 60px;
         padding-bottom: 40px;
@@ -115,7 +117,7 @@ h2 {
     pointer-events: auto;
 }
 .hero .content h1 {
-    font-family: TitleFont;
+    font-family: TextFont;
     text-align: center;
 
     color: white;
@@ -199,7 +201,7 @@ h2 {
         width: 100%;
     }
 }
-@media (max-height: 700px) {
+@media (max-height: 700px) or (max-width: 710px) {
     .projects {
         margin-bottom: 40px;
     }
@@ -331,7 +333,7 @@ h2 {
     max-width: var(--monitor-width);
 }
 .project-name {
-    font-family: TitleFontBold;
+    font-family: HFont;
     font-size: 1.5em;
     color: var(--dark-font);
     cursor: pointer;
@@ -414,7 +416,7 @@ h2 {
 .about .content .left {
     width: 62%;
 
-    font-family: TitleFont;
+    font-family: TextFont;
     font-size: 22px;
     color: white;
 }
@@ -424,7 +426,7 @@ h2 {
 }
 @media (max-width: 1060px) {
     :root {
-        --media-me-width: 400px;
+        --media-me-width: 70vw;
     }
     .about canvas {
         display: none;
@@ -504,7 +506,7 @@ h2 {
     padding-top: 75px;
 }
 .technology h3 {
-    font-family: TitleFont;
+    font-family: TextFont;
     color: white;
     text-align: center;
 }
@@ -533,7 +535,8 @@ h2 {
 .technology:hover .technology-icon {
     width: 125px;
 }
-.technology:hover h3 {
+.technology h3 {
+    font-size: 18px;
     display: block;
 }
 @media (max-width: 1060px) {
@@ -544,6 +547,21 @@ h2 {
     }
     .technology {
         flex-basis: 25%;            /* Only allow 4 per row */
+    }
+}
+@media (max-width: 710px) {
+    .technology h3 {
+        font-size: 14px;
+    }
+    .technology-icon {
+        width: 50px;
+    }
+    .technology:hover .technology-icon {    /* No upsizing if screen too small */
+        width: 50px;
+    }
+    .technology:hover {                     /* Smaller animations if screen too small */
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 }
 
@@ -569,7 +587,7 @@ h2 {
     display: block;
     margin-bottom: 6px;
 
-    font-family: TitleFont;
+    font-family: TextFont;
     color: var(--dark-font);
     font-size: 20px;
 }
@@ -582,7 +600,7 @@ h2 {
 
     padding: 15px;
 
-    font-family: TitleFont;
+    font-family: TextFont;
     color: var(--dark-font);
     font-size: 20px;
     line-height: 20px;
@@ -605,7 +623,7 @@ h2 {
 }
 @media (max-width: 710px) {
     .contact .form {
-        width: 450px;
+        width: 80%;
     }
 }
 @media (max-height: 700px) {
@@ -667,7 +685,7 @@ h2 {
     filter: none;
 }
 .footer h4 {
-    font-family: TitleFont;
+    font-family: TextFont;
     color: gray;
     text-align: center;
 }
@@ -690,7 +708,7 @@ h2 {
     background-color: #f8d7da;
     color: #721c24;
 
-    font-family: TitleFont;
+    font-family: TextFont;
     font-size: 21.6px;
 }
 
