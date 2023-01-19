@@ -2,7 +2,7 @@
   let canvas = document.querySelector('#About-Canvas');
   let context = canvas.getContext( '2d' );
   
-  const minimumCanvasHeight = 900
+  const minimumCanvasHeight = 1500
   const isCanvasInPage = () => document.querySelector('#About-Canvas').getBoundingClientRect().top < window.innerHeight
   
   setupCanvasSize(canvas, minimumCanvasHeight)

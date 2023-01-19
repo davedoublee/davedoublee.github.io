@@ -515,6 +515,7 @@ h2 {
     justify-content: space-between;
 
     padding-top: 75px;
+    margin-bottom: 60px;        /* A bit of extra space down */
 }
 .technology h3 {
     font-family: TextFont;
@@ -554,7 +555,6 @@ h2 {
     .technologies {
         width: 90%;
         flex-wrap: wrap;
-        margin-bottom: 60px;        /* A bit of extra space down */
     }
     .technology {
         flex-basis: 25%;            /* Only allow 4 per row */
