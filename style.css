@@ -534,18 +534,20 @@ h2 {
     display: block;
     margin: auto;
 
-    width: 75px;
-    -webkit-transition: width 0.3s ease-in-out;
-    -moz-transition: width 0.3s ease-in-out;
-    -o-transition: width 0.3s ease-in-out;
-    transition: width 0.3s ease-in-out;
+    height: 75px;
+    -webkit-transition: height 0.3s ease-in-out;
+    -moz-transition: height 0.3s ease-in-out;
+    -o-transition: height 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
+
+    cursor: pointer;
 }
 .technology:hover {
     padding-top: 0px;
     padding-bottom: 0px;
 }
 .technology:hover .technology-icon {
-    width: 125px;
+    height: 125px;
 }
 .technology h3 {
     font-size: 18px;
