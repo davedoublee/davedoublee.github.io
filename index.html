@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
     <title>Dave Doublee - Freelance Developer</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="projects-page.css">
     <link rel="stylesheet" href="link-animations.css">
+    <link rel="stylesheet" href="scroll-icon.css">
+
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
     </script>
@@ -25,6 +29,39 @@
             document.querySelector('#Projects-Page').style.display = 'none'
         }
     </script>
+
+    
+
+
+    <div class="icon-scroll"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    
+
+            const windowHeight = window.innerHeight
+            const iconScroll = document.querySelector('.icon-scroll')
+            
+            if (iconScroll == null) return
+
+            window.addEventListener('scroll', evt => {
+                
+                const documentHeight = document.body.scrollHeight
+                const top = (window.pageYOffset || document.scrollTop)  - (document.clientTop || 0)
+                const scrollY = top + windowHeight
+                
+                if (scrollY + 100 >= documentHeight) {  // If at the bottom; +100 for good measure
+                    iconScroll.hidden = true
+                } else {
+                    iconScroll.hidden = false
+                }
+            })
+
+        })
+    </script>
+
+
+
+
 
     <div id="Index-Page" class="page">
         <div class="hero">
@@ -220,14 +257,12 @@
             <div class="content">
                 <div class="left">
                     The rumors about <span style="color: var(--teal-color)">10x developers</span> are true.
-                    Let me tell you the truth: today's programming is bloated with complicated infrastructures, overly large teams and development is <i>slow</i>. I will dismantle the system for you - fast, clean and with good communication.
+                    Today's programming is bloated with complicated infrastructures, overly large teams and development is <i>slow</i>. I will dismantle the system for you - fast, clean and with good communication.
                     <br><br>
                     I can deliver a full package: a <span style="color: var(--teal-color)">cross-platform</span> app that runs on <span style="color: var(--teal-color)">Desktop</span>, <span style="color: var(--teal-color)">Android</span> and in the <span style="color: var(--teal-color)">browser</span>, with <span style="color: var(--teal-color)">back-end server</span>, <span style="color: var(--teal-color)">hosting</span> and <span style="color: var(--teal-color)">design</span> included.
                     I graduated computer science in 2020 and my license project was a full-fledged programming language, with an online compiler and scientific paper.
                     I am also proficient in game development with <span style="color: var(--teal-color)">Unity</span>, <span style="color: var(--teal-color)">Godot</span> and <span style="color: var(--teal-color)">C#</span>.
-                    <br><br>
-                    I am a <span style="color: var(--teal-color)">JavaScript</span> enthusiast. What I am as well is <i>flexible</i> - I can work with any technology.
-                    For my front-end projects, I use <span style="color: var(--teal-color)">React</span> or plain <span style="color: var(--teal-color)">HTML</span>, depending on your needs. No worries, I will help you decide 😉.
+                    Let's talk!
                 </div>
                 <div class="left" name="HTML5" hidden>
                     What people don't know is that <span style="color: var(--teal-color)">HTML, CSS and JavaScript</span> are <span style="color: var(--teal-color)">cross-platform</span> technologies that can be exported to Desktop and Mobile applications.
@@ -615,7 +650,7 @@
     <div class="contact" id="Contact">
         <div class="h2-container">
             <h2>
-                <span class="switchy" data-replace="What are you waiting for?">
+                <span class="switchy" data-replace="Do it!">
                     <span>Let's Get In Touch</span>
                 </span>
             </h2>
@@ -632,10 +667,20 @@
             <label>Message</label>
             <textarea id="text" class="form-element" placeholder="Hi, Dave! I need a project done quickly and efficiently! Can you help?"></textarea>
 
-            <div class="button-and-error-message">
+            <div class="button-and-error-message" style="margin-bottom: 15px">
                 <button id="send-button" class="button-link--dark generic-button" onclick="sendMail()">Send</button>
                 <div class="error-message" style="display: none;">
                     
+                </div>
+            </div>
+            <div class="button-and-error-message">
+                <div class="form-element email-container">
+                    <div class="email-left">
+                        Or mail me directly
+                    </div>
+                    <input class="form-element" value="davedoubleedev@gmail.com" readonly onclick="
+                        event.target.select()
+                    ">
                 </div>
             </div>
         </div>
@@ -697,10 +742,10 @@
         <img class="diagonal-cut-reverse" src="images/DiagonalCutReverse.png">
         <div style="width: 100%; padding-top: var(--footer-padding-top)">
             <div class="footer-icons">
-                <img class="footer-icon" src="images/icons/Facebook.png">
-                <img class="footer-icon" src="images/icons/Twitter.png">
-                <img class="footer-icon" src="images/icons/Linkedin.png">
-                <img class="footer-icon" src="images/icons/Fiverr.png">
+                <a href="https://store.steampowered.com/app/1927570/Tilefinder/"><img class="footer-icon" src="images/icons/Steam.png"></a>
+                <a href="https://twitter.com/DaveDoublee"><img class="footer-icon" src="images/icons/Twitter.png"></a>
+                <a href="https://www.linkedin.com/in/ioan-david-irimia-8a8118211/"><img class="footer-icon" src="images/icons/Linkedin.png"></a>
+                <a href="https://www.fiverr.com/davedoublee"><img class="footer-icon" src="images/icons/Fiverr.png"></a>
             </div>
         </div>
         <h4>Dave Doublee <span style="color: rgb(80, 129, 138)">@2023</span></h4>

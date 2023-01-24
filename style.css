@@ -79,13 +79,23 @@ h2 {
 }
 .h2-container {
     width: 100%;
-    padding-top: 105px;
+    padding-top: 75px;
     padding-bottom: 75px;
 }
 @media (max-height: 700px) or (max-width: 700px) {  /* Also if screen too small */
     .h2-container {
         padding-top: 60px;
         padding-bottom: 40px;
+    }
+}
+
+/* ------------- Scrolling ---------- */
+@media (orientation: landscape) {
+    body, html, #Index-Page {
+        scroll-snap-type: y proximity;
+    }
+    #Index-Page > div, .contact, .footer {
+        scroll-snap-align: start;
     }
 }
 
@@ -381,7 +391,7 @@ h2 {
 :root {
     --about-right-percent: 32%;
     --about-right-width: calc(var(--middle-width) * 0.32);
-    --about-minimum-height: 1050px;
+    --about-minimum-height: 1025px;
 
     --me-border-offset: 18px;
 }
@@ -567,10 +577,10 @@ h2 {
         font-size: 14px;
     }
     .technology-icon {
-        width: 50px;
+        height: 75px
     }
     .technology:hover .technology-icon {    /* No upsizing if screen too small */
-        width: 50px;
+        height: 75px
     }
     .technology:hover {                     /* Smaller animations if screen too small */
         padding-top: 15px;
@@ -726,3 +736,26 @@ h2 {
 }
 
 
+
+
+
+.email-container {
+    display: flex;
+
+    padding: 0px;
+    line-height: 25px;
+
+    border: solid rgb(150, 150, 150) 2px !important;
+}
+.email-left {
+    background-color: #EEE;
+    padding: 15px;
+    border-right: solid rgb(150, 150, 150) 2px;
+}
+.email-container .form-element {
+    display: block;
+    height: 100%;
+    border: none;
+
+    flex: 1;
+}
