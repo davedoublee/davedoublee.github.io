@@ -186,24 +186,23 @@
     width: 100px;
     height: 100px;
     z-index: 999992;
+    mix-blend-mode: difference;
 }
 .back-arrow {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     position: fixed;
     z-index: 999993;
 
     top: 10px;
-    left: 10px;
-    font-size: 35px;
+    left: 30px;
+    font-size: 45px;
     color: var(--teal-color);
 
-    -moz-transform: scale(-1, 1);
-    -webkit-transform: scale(-1, 1);
-    -o-transform: scale(-1, 1);
-    -ms-transform: scale(-1, 1);
-    transform: scale(-1, 1);
+    /* transform: scale(-1, 1); */
+    transform: rotate(90deg) scale(1.5, 1);
 
     transition: color 0.1s ease-out;
 }
 .back-arrow:hover {
-    color: white;
+    filter: brightness(125%);
 }
