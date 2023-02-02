@@ -210,7 +210,6 @@ h2 {
     font-family: HFont;
     font-size: 1.5em;
     color: var(--dark-font);
-    cursor: pointer;
 
     margin-bottom: var(--project-gap);
 }
@@ -241,6 +240,7 @@ h2 {
 }
 .thumbnail-overlay {
     opacity: 0;
+    visibility: hidden;
 
     position: absolute;
     top: 0px;
@@ -260,6 +260,8 @@ h2 {
     align-items: center;
     align-content: center;
     gap: var(--project-font-size);
+
+    user-select: none;
 }
 .thumbnail-overlay.no-button {    
     display: flex;
@@ -267,8 +269,16 @@ h2 {
     align-items: center;
     justify-content: center;
 }
-.thumbnail-wrapper:hover .thumbnail-overlay {
-    opacity: 1;
+@media (orientation: landscape) {
+    .thumbnail-wrapper:hover .thumbnail-overlay {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+@media (orientation: portrait) {
+    .thumbnail-wrapper:hover {
+        cursor: pointer;
+    }
 }
 .thumbnail-overlay p {
     margin: 0px;

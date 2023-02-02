@@ -91,14 +91,14 @@
 
             <div class="projects-box">
                 <div class="thumbnail-wrapper">
-                    <img src="images/projects/CallofHeroes-Monitor.png">
+                    <a href="https://github.com/daverave1212/graveyard-man"><img src="images/projects/CallofHeroes-Monitor.png"></a>
                     <div class="thumbnail-overlay">
                         <p>Website for a Tabletop RPG, made with React</p>
                         <a class="button-link--white generic-button" href="https://callofheroesrpg.github.io/">Visit Website</a>
                     </div>
                 </div>
                 <div class="thumbnail-wrapper">
-                    <img src="images/projects/Tilefinder-Monitor.gif">
+                    <a href="https://github.com/daverave1212/graveyard-man"><img src="images/projects/Tilefinder-Monitor.gif"></a>
                     <div class="thumbnail-overlay">
                         <p>Haxe game, 100.000+ lines of code, cross-platform</p>
                         <a class="button-link--white generic-button" href="https://callofheroesrpg.github.io/">Visit Website</a>
@@ -111,21 +111,21 @@
                     </div>
                 </div>
                 <div class="thumbnail-wrapper">
-                    <img src="images/projects/Portofolio.png">
+                    <a href="https://github.com/daverave1212/graveyard-man"><img src="images/projects/Portofolio.png"></a>
                     <div class="thumbnail-overlay">
                         <p>My portfolio! Try hovering over a title!</p>
                         <a class="button-link--white generic-button" href="https://davedoublee.github.io">Visit Website</a>
                     </div>
                 </div>
                 <div class="thumbnail-wrapper">
-                    <img src="images/projects/GraveyardMan.png">
+                    <a href="https://github.com/daverave1212/graveyard-man"><img src="images/projects/GraveyardMan.png"></a>
                     <div class="thumbnail-overlay">
                         <p>3D Unity game made with C#; level design exploration</p>
                         <a class="button-link--white generic-button" href="https://github.com/daverave1212/graveyard-man">Visit Website</a>
                     </div>
                 </div>
                 <div class="thumbnail-wrapper">
-                    <img src="images/projects/Waxx.png">
+                    <a href="https://daverave1212.github.io/waxx-demo/"><img src="images/projects/Waxx.png"></a>
                     <div class="thumbnail-overlay">
                         <p>Programming language with scientific article and demo</p>
                         <a class="button-link--white generic-button" href="https://daverave1212.github.io/waxx-demo/">Visit Website</a>
@@ -133,6 +133,15 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            if (window.innerWidth < window.innerHeight) {
+                document.querySelectorAll('.projects-box .thumbnail-wrapper').forEach(div => {
+                    const aHref = div.querySelector('a').getAttribute('href')
+                })    
+            }
+        </script>
+
 
 
         <!-- <div id="Projects-Section" class="projects">
@@ -158,7 +167,7 @@
             </div>
         </div> -->
 
-        <script>
+        <!-- script>
             let isClickable = true
             let didClickOnAnyProject = false    // Used to toggle auto-carousel swapping
             const projectNameDivs = [...document.querySelectorAll('.project-name')]
@@ -288,13 +297,16 @@
                 toggleProject(nextProjectNameDiv)
             }
 
-            setInterval(() => {
-                if (didClickOnAnyProject) return    // Turn off if user ever manually clicked on a project name div
-                toggleNextProject()
-            }, 3000)
+            function initCarousel() {
+                setInterval(() => {
+                    if (didClickOnAnyProject) return    // Turn off if user ever manually clicked on a project name div
+                    toggleNextProject()
+                }, 3000)
+            }
 
+            initCarousel()
 
-        </script>
+        </script -->
 
 
         <div class="about">
@@ -434,7 +446,7 @@
 
     <div id="Projects-Page"> 
         <div class="back-arrow-container" onclick="backToIndexPage()">
-            <span class="back-arrow">v</span>
+            <span class="back-arrow">^</span>
         </div>
         <div class="other-projects"
             style="display: '';"
